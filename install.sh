@@ -29,7 +29,7 @@ install() {
 
     # Composer install
     cd ../
-    cp .env.example .env
+    envsubst < .env.example > .env
     composer install
     php artisan key:generate
 
