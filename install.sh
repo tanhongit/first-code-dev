@@ -19,11 +19,6 @@ install() {
     git clone git@github.com:tanhongit/laravel-telegram-git-notifier.git
     git clone git@github.com:tanhongit/telegram-git-notifier.git
 
-    # Clone the required repo
-    cd ../lark-git-notifier || exit
-    git clone git@github.com:tanhongit/laravel-lark-git-notifier.git
-    git clone git@github.com:tanhongit/lark-git-notifier.git
-
     cd ../
     git clone git@github.com:tanhongit/git-notifier-ui.git
 
@@ -42,8 +37,12 @@ install() {
     cd telegram-git-notifier-dev || exit
 
     envsubst < .env.example > .env
-    composer install
     php artisan key:generate
+
+    sed -i 's/cslant/tanhongit/g' .env
+    sed -i 's/telegram-git-notifier/tgn/g' .env
+
+    composer install
 
     cd ../
   fi
